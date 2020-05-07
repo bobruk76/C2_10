@@ -1,0 +1,9 @@
+.progress {
+    height: 4rem;
+    font-size: 2rem;
+}
+
+.btn:enabled:hover{
+    color:  #343a40;
+    background-color: #343a4000;
+}
