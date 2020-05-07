@@ -6,18 +6,27 @@ const header = new Headers({
   'Access-Control-Allow-Origin': '*'
 })
 
-// const url = new URL('https://sf-pyw.mosyag.in/sse/vote/stats')
+
 // const ES = new EventSource(url, header)
 
+function sendVote(urlLink) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", urlLink);
+  xhr.send();
+  xhr.onload = () => {console.log(xhr.response)};
+}
 
 function init() {
 
   animals.forEach(Item => {
-    const $button = `<button type="button" class="btn btn-dark ml-3" data-progress="${Item}">${Item.toUpperCase()}</button>`;
+    const $button = `<div id="${Item}-btn" type="button" class="btn btn-dark ml-3" data-progress="${Item}">${Item.toUpperCase()}</div>`;
     let temp = document.createElement('div');
     temp.innerHTML = $button;
     let htmlObject = temp.firstChild;
+    const url = `https://sf-pyw.mosyag.in/sse/vote/${Item}`
+    htmlObject.addEventListener("click", sendVote(url));
     $voteForm.appendChild(htmlObject);
+
   });
 }
 
