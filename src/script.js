@@ -20,7 +20,6 @@ function setProgressWidth(obj,value,maxValue){
     widthProgress = Math.round(100*value/maxValue)
     obj.style.cssText = `width: ${widthProgress}%`
     obj.textContent = `${value}`
-
 }
 
 
@@ -31,14 +30,12 @@ function init() {
 
   ES.onmessage = ({ data }) => {
 
-    // {"cats": 3915, "parrots": 6328, "dogs": 5306}
     let result = JSON.parse(data);
     let maxVotes = Object.values(result).max();
 
     setProgressWidth(progressCats, result.cats, maxVotes);
     setProgressWidth(progressParrots, result.parrots, maxVotes);
     setProgressWidth(progressDogs, result.dogs, maxVotes);
-
   }
 
 }
