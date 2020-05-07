@@ -24,9 +24,10 @@ function init() {
     temp.innerHTML = $button;
     let htmlObject = temp.firstChild;
     const url = `https://sf-pyw.mosyag.in/sse/vote/${Item}`
-    htmlObject.addEventListener("click", sendVote(url));
+    //htmlObject.addEventListener("click", sendVote(url));
     $voteForm.appendChild(htmlObject);
-
+    let $obj = document.getElementById(`${Item}-btn`);
+    $obj.addEventListener("click",() => {sendVote(url)});
   });
 }
 

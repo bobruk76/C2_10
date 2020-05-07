@@ -7,3 +7,8 @@
     color:  #343a40;
     background-color: #343a4000;
 }
+
+.btn:active{
+    background-color: peru;
+    color: plum;
+}
