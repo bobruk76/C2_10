@@ -11,7 +11,6 @@ def create_app():
 
     return app
 
-
 app = create_app()
 
 # Static CSS Files
@@ -41,3 +40,13 @@ def index():
 @view('vote')
 def get_form():
     return {}
+
+@app.get("/sse/vote/stats")
+def stats_get():
+    response.content_type = "text/event-stream"
+    response.cache_control = "no-cache"
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    count = 1
+    while True:
+        yield {'count':count}
+        time.sleep(2)

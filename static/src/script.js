@@ -12,10 +12,10 @@ const header = new Headers({
   'Access-Control-Allow-Origin': '*'
 })
 
-const url = new URL('https://sf-pyw.mosyag.in/sse/vote/stats')
+const url = new URL('/sse/vote/stats', location)
 const ES = new EventSource(url, header)
 
-function setProgressWidth(obj,value,maxValue){
+function setProgressWidth(obj, value, maxValue){
     widthProgress = Math.round(100*value/maxValue)
     obj.style.cssText = `width: ${widthProgress}%`
     obj.textContent = `${value}`
