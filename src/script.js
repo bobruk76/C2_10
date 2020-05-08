@@ -3,7 +3,6 @@ Array.prototype.max = function () {
   return Math.max.apply(Math, this);
 }
 
-
 const progressCats = document.querySelector('#progressbar-cats')
 const progressParrots = document.querySelector('#progressbar-parrots')
 const progressDogs = document.querySelector('#progressbar-dogs')
