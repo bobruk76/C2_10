@@ -19,15 +19,15 @@ function sendVote(urlLink) {
 function init() {
 
   animals.forEach(Item => {
-    const $button = `<div id="${Item}-btn" type="button" class="btn btn-dark ml-3" data-progress="${Item}">${Item.toUpperCase()}</div>`;
+    const $button = `<button id="${Item}-btn" type="button" class="btn btn-dark ml-3" data-progress="${Item}">${Item.toUpperCase()}</button>`;
     let temp = document.createElement('div');
     temp.innerHTML = $button;
     let htmlObject = temp.firstChild;
     const url = `https://sf-pyw.mosyag.in/sse/vote/${Item}`
-    //htmlObject.addEventListener("click", sendVote(url));
+    htmlObject.addEventListener("click", () => {sendVote(url)});
     $voteForm.appendChild(htmlObject);
-    let $obj = document.getElementById(`${Item}-btn`);
-    $obj.addEventListener("click",() => {sendVote(url)});
+    // let $obj = document.getElementById(`${Item}-btn`);
+    // $obj.addEventListener("click",() => {sendVote(url)});
   });
 }
 
