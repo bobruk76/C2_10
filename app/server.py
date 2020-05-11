@@ -1,5 +1,6 @@
 import time
 from bottle import *
+from app.db import *
 
 def create_app():
     app = Bottle()
@@ -34,6 +35,7 @@ def send_css(filename):
 @app.get("/")
 @view('index')
 def index():
+    create_db()
     return {}
 
 @app.get("/vote")
@@ -48,7 +50,9 @@ def stats_get():
     response.headers['Access-Control-Allow-Origin'] = '*'
 
     while True:
-        yield 'data: {"cats": 4262, "parrots": 6416, "dogs": 5478}\n\n'
+        msg = list(map(lambda item : '"{}": {}'.format(item.name, item.votes),animals_get())).join(',')
+        print(msg)
+        yield 'data: {msg}\n\n'
         time.sleep(2)
 
 #data: {"cats": 4262, "parrots": 6416, "dogs": 5478}
