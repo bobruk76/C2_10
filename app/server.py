@@ -46,7 +46,9 @@ def stats_get():
     response.content_type = "text/event-stream"
     response.cache_control = "no-cache"
     response.headers['Access-Control-Allow-Origin'] = '*'
-    count = 1
+
     while True:
-        yield {'count':count}
+        yield 'data: {"cats": 4262, "parrots": 6416, "dogs": 5478}\n\n'
         time.sleep(2)
+
+#data: {"cats": 4262, "parrots": 6416, "dogs": 5478}
