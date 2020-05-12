@@ -11,6 +11,8 @@
     <div class="container-fluid">
       <h1>Vote resutls:</h1>
 
+      <button id="crt-db-btn" type="button" class="btn btn-dark ml-3">Create database</button>
+
       <div id="cats">
         <h2>Cats</h2>
         <div class="progress mb-2">
@@ -35,7 +37,6 @@
         </div>
       </div>
       <a href="/vote" target="_blank">vote yourself</a>
-
     </div>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/static/src/script.js"></script>

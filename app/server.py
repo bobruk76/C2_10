@@ -43,6 +43,11 @@ def index():
 def get_form():
     return {}
 
+@app.post("/db-create")
+def post_db_create():
+    create_db()
+    return {"msg":"done"}
+
 @app.get("/sse/vote/stats")
 def stats_get():
     response.content_type = "text/event-stream"
@@ -50,9 +55,8 @@ def stats_get():
     response.headers['Access-Control-Allow-Origin'] = '*'
 
     while True:
-        msg = list(map(lambda item : '"{}": {}'.format(item.name, item.votes),animals_get())).join(',')
-        print(msg)
-        yield 'data: {msg}\n\n'
+        msg = '{'+','.join(map(lambda item : '"{}": {}'.format(item.name, item.votes),animals_get()))+'}'
+        yield 'data: {}\n\n'.format(msg)
         time.sleep(2)
 
 #data: {"cats": 4262, "parrots": 6416, "dogs": 5478}

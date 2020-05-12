@@ -21,6 +21,13 @@ function setProgressWidth(obj, value, maxValue){
     obj.textContent = `${value}`
 }
 
+function createDB() {
+  const urlCreateDB = new URL('/db-create', location)
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", urlLink);
+  xhr.send();
+  xhr.onload = () => {console.log(xhr.response)};
+}
 
 function init() {
   ES.onerror = error => {

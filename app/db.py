@@ -18,9 +18,9 @@ vote_results = sa.Table('voting', metadata,
     sa.Column('votes', sa.Integer)
 )
 
-def connect_db():
-    metadata.create_all(engine)
-    session = sessionmaker(engine)
+def connect_db(eng):
+    metadata.create_all(eng)
+    session = sessionmaker(eng)
     return session()
 
 def create_db():
@@ -29,17 +29,11 @@ def create_db():
         for animal in animals:
             statement = vote_results.insert().values(
                 name = animal,
-                votes = 0
+                votes = 1
             )
             connection.execute(statement)
 
 def animals_get():
-    db = sa.create_engine(DB_PATH)
-    try:
-        session = connect_db()
-    except :
-        create_db()
-        session = connect_db()
-
+    session = connect_db(engine)
     animals = session.query(vote_results).all()
     return animals
