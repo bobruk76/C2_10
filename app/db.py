@@ -33,6 +33,19 @@ def create_db():
             )
             connection.execute(statement)
 
+def animals_set(animal):
+    with engine.begin() as connection:
+        select = vote_results.select().where(vote_results.c.name == animal)
+        results = connection.execute(select)
+        id, _, votes = results.fetchone()
+
+        new_votes = votes + 1
+        update = (
+            vote_results.update().values(votes=new_votes).where(vote_results.c.id == id)
+        )
+
+        connection.execute(update)
+
 def animals_get():
     session = connect_db(engine)
     animals = session.query(vote_results).all()

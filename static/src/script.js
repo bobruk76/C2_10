@@ -24,7 +24,7 @@ function setProgressWidth(obj, value, maxValue){
 function createDB() {
   const urlCreateDB = new URL('/db-create', location)
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", urlLink);
+  xhr.open("POST", urlCreateDB);
   xhr.send();
   xhr.onload = () => {console.log(xhr.response)};
 }
@@ -42,6 +42,10 @@ function init() {
     setProgressWidth(progressCats, result.cats, maxVotes);
     setProgressWidth(progressParrots, result.parrots, maxVotes);
     setProgressWidth(progressDogs, result.dogs, maxVotes);
+
+    let $htmlObject = document.querySelector('#crt-db-btn')
+    $htmlObject.addEventListener("click", () => {createDB()});
+
   }
 
 }

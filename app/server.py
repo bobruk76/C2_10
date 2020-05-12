@@ -35,7 +35,6 @@ def send_css(filename):
 @app.get("/")
 @view('index')
 def index():
-    create_db()
     return {}
 
 @app.get("/vote")
@@ -48,6 +47,12 @@ def post_db_create():
     create_db()
     return {"msg":"done"}
 
+@app.post("/sse/vote/<animal>")
+def set_voice(animal):
+    animals_set(animal)
+    return {"message":"Ok"}
+
+
 @app.get("/sse/vote/stats")
 def stats_get():
     response.content_type = "text/event-stream"
@@ -57,6 +62,6 @@ def stats_get():
     while True:
         msg = '{'+','.join(map(lambda item : '"{}": {}'.format(item.name, item.votes),animals_get()))+'}'
         yield 'data: {}\n\n'.format(msg)
-        time.sleep(2)
+        time.sleep(5)
 
 #data: {"cats": 4262, "parrots": 6416, "dogs": 5478}

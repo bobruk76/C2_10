@@ -23,7 +23,7 @@ function init() {
     let temp = document.createElement('div');
     temp.innerHTML = $button;
     let htmlObject = temp.firstChild;
-    const url = `https://sf-pyw.mosyag.in/sse/vote/${Item}`
+    const url = `/sse/vote/${Item}`
     htmlObject.addEventListener("click", () => {sendVote(url)});
     $voteForm.appendChild(htmlObject);
     // let $obj = document.getElementById(`${Item}-btn`);
